@@ -13,26 +13,25 @@ that you can have a lot of fun with this stuff either way. The project is a work
 
 ![top view of pan and tilt](/images/pan%20and%20tilt%20detail.jpg)
 
-A pan and tilt mechanism was the first thing I made. This uses two MG995 servos to create a pan and tilt mechanism. The camera rests on a support at the front. The mechanism 
+A pan and tilt mechanism was the first thing I made that could follow you with a camera. It uses two MG995 servos to create a pan and tilt mechanism. The camera rests on a support at the front. The mechanism 
 works fine and will also support a smartphone (you can use it to shoot panoramas if you like).
 
 ![pan and tilt components](/images/pantilt.png)
-You can find the designs for these components in the 3d printing folder in this repository. Pan and tilt was fun but I really wanted something I could hang on the wall....
+You can find the designs for these components in the 3d printing folder in this repository. Panning and tilting was fun but I really wanted something I could hang on the wall....
 ## Picture Camera mounting
-So I moved on to a wall mounted device inside a six inch square picture frame. These are easy to get hold of from craft 
-shops and are deep enough to allow electronics to be fitted in the back. Just make sure you get ones with removable glass. 
+So I moved on to a wall mounted device inside a six inch square picture frame. These are easy to get hold of from craft shops and are deep enough to allow electronics to be fitted in the back of the frame. Just make sure you get ones with removable glass. 
 Some frames have the glass glued in, which makes it very had to remove without breaking it. You can see the picture frame version of the camera in the image at the top of this page. The camera seems to float out of the picture. 
 At least, I think it does. 
 
 ![four servo version showing servos](/images/four%20servo%20version.jpg)
 
-This version uses a small picture frame with four tiny little servos, a Raspberry Pi PICO and a Useful Sensors [Person sensor](https://github.com/usefulsensors/person_sensor_docs/blob/main/README.md). 
+This version uses a picture panel containing four tiny little servos, a Raspberry Pi PICO, a servo driver board and a Useful Sensors [Person sensor](https://github.com/usefulsensors/person_sensor_docs/blob/main/README.md). 
 
-The camera is mounted on 3D printed ball and socket joint which is fitted inside to camera, idealy close to the camera's centre of balance. The idea is that the joint supports the weight of the camera, and the low powered servos only have to move the camera, not support its weight. To make sure there is enough movement force avaialble I used four stepper motors rather than two.
+The camera is mounted on 3D printed ball and socket joint which is fitted inside the camera, idealy close to the camera's centre of balance. The idea is that the joint supports the weight of the camera, and the low powered servos only have to move the camera, not support its weight. To make sure there is enough movement force I used four stepper motors rather than two.
 
 ![control wires linking to the camera support](/images/control%20wires.jpg)
 
-This shows how the control wires are connected to the camera support. 
+This shows how the control wires are connected from the servo horns to the camera support. 
 
 ![3D printed parts for mounting servos](/images/frame%20hardware.png)
 
