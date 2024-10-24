@@ -123,6 +123,20 @@ module backplate(){
     }
 }
 
+module universalBackplate(){
+    difference(){
+        union(){
+            plate(plateWidth,plateDepth,plateThickness,cornerRadius,[1,1,1,1]);
+            translate([0,0,plateThickness/2]){
+                universalSupport();
+            }
+        }
+        fourHolesCross(plateWidth-backplateCornerHoleInset,plateDepth-backplateCornerHoleInset,plateThickness,backplateCornerHoleRadius);
+        translate([0,0,centerSupportHeight-centreHoleRadius]) sphere(r=centreHoleRadius);
+        cylinder(h=10,r1=8,r2=centreHoleRadius-0.45);
+    }
+}
+
 servoSlotWidth=10;
 servoShotDepth=25;
 backPlateWidth=169;
@@ -290,6 +304,8 @@ union(){
     backplate();
     translate ([0,-100,0]) servoPlate();
     translate ([0,-200,0]) centreSupport();
+    translate ([0,-250,0]) universalBackplate();
+    translate ([0,-300,0]) universalCentreSupport();
 }
 
 
