@@ -29,7 +29,7 @@ class ServoManager():
         for no in range(0,no_of_servos):
             self.servos.append(servo.Servo(self.pca.channels[no]))
     
-    def set_servo_angles(self,x, y, max_tilt_angle=90):
+    def set_servo_angles(self,x, y, max_tilt_angle=60):
         """
         Given X and Y coordinates (in some desired range, e.g., -1 to 1), this function
         calculates the servo angles for four servos controlling the corners of the plate.
@@ -65,6 +65,14 @@ class ServoManager():
                     self.set_servo_angles(xs,ys)
                     time.sleep(0.1)
 
+    def startup_test(self):
+        tests = ((-1,-1),(1,-1),(1,1), (-1,1),(0,0))
+        for pos in tests:
+            (x,y)=pos
+            self.set_servo_angles(x,y)
+            time.sleep(1)
+            
+        
     def manual_set(self):
         print("Enter servo and change value")
         command = input()
@@ -215,8 +223,10 @@ pap = Paparazzi(number_of_servos)
 
 # call this to scan the camera through all positions
 # Good for testing
+#pap.servoManager.scan()
 
-#pap.scan()
+# Moves the camera around the four corners 
+pap.servoManager.startup_test()
 
 while True:
     pap.update()

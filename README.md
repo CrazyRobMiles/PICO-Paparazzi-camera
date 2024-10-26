@@ -49,6 +49,7 @@ The four servo design uses SG90 servos. The two servo version of the design uses
 
 The servos are driven by a PCA9685 16 Channel 12-bit PWM Servo motor driver. Both the servo driver board and the person sensor are connected to I2C. This is made easy by the way that the server driver board has i2c pass through. 
 
+### Servo controller connection
 The servo controller pins are connected as follows:
 
 * scl GPIO5
@@ -56,17 +57,36 @@ The servo controller pins are connected as follows:
 
 The power for the servos is obtained from the VBUS connection. This means that the servos are powered from the PICO USB connection. This is fine for the servos we are using, but if you start to use larger servos, heavier cameras or more servos you might want to consider 
 
-## The Person Sensor
+### Servo connection for 2 servos
+* Up/down - servo S0
+* left/right - servo S1
+
+### Servo connection for 4 servos
+
+* Up - servo S0
+* Left - servo S1
+* Right - servo S2
+* Down - servo S3
+
+### The Person Sensor
+The best way to connect the Person Sensor is by using a QWIIC connector brought out to four sockets which to to pins soldered onto the servo driver board. See the picture above for more details. 
+
 The Person Sensor does work, although it can be a bit reticent. You need to make sure that the area where the camera is being used is well it and if clearing the background behind the image viewed by the sensor also improves recognition.
 
 ## Software
 
-The software controlling the device is written in Circuit Python. It uses a set of AdaFruit libraries to control the servos. You can find the software and the libraries in the python folder. Just copy the contents of this folder onto the root directory of the storage for the Circuit Python drive which appears when the PICO is connected to the computer. 
+The software controlling the device is written in Circuit Python. It uses a set of AdaFruit libraries to control the servos. You can find the software and the libraries in the python folder. Just copy the contents of this folder onto the root directory of the storage for the Circuit Python drive which appears when the PICO is connected to the computer. The program is stored in a file called code.py and will run automatically when your PICO is powered up. When it starts up it moves the camera to each corner in turn and then back into the middle. 
+
+### Servo configuration
 
 You can select the servo configuration by changing the value on the first line of the code:
 ```
 number_of_servos = 2
 ```
+The number of servos can be 2 or 4. Any other number will cause an exception to be raised. 
+
+### Paparazzi class
+
 The Paparazzi class creates a PersonSensor object and an appropriate servo driver object. You can then repeatedly update the position of the camera by calling the update method on the Paparazzi instance:
 ```
 pap = Paparazzi(number_of_servos)
@@ -77,7 +97,7 @@ while True:
     time.sleep(0.1)
 
 ```
-The number of servos can be 2 or 4. The code above updates the sensor every tenth of a second. You can use the scan method to test all the positions of the servos:
+The code above updates the sensor every tenth of a second. You can use the scan method to test all the positions of the servos:
 
 ```
 pap = Paparazzi(number_of_servos)
